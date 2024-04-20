@@ -26,9 +26,9 @@ async function logIn (req) {
                 phoneNumber: body.phoneNumber
             }
         })
-
+        console.log({ msg: `user is found ${user}`})
         if (user && user.authenticate(body.password)) {
-            console.log(`login is successful for user ${user}`)
+            console.log({ msg: `login is successful for user ${user}` })
             return user
         } else {
             throw new Error('Invalid Credentials')
