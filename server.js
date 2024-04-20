@@ -14,7 +14,7 @@ try {
   await db.authenticate()
   console.log('db has been connected')
 } catch (err) {
-  console.log('unable to connect to the db')
+  console.log('unable to connect to the db', err)
 }
 app.use(cors())
 app.use(express.json())

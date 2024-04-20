@@ -34,5 +34,5 @@ const options = {
     round: 12,
     compare: 'authenticate'
 }
-useBcrypt(User, )
+useBcrypt(User, options)
 export default User
