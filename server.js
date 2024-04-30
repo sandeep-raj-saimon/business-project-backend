@@ -4,11 +4,11 @@ import 'dotenv/config.js'
 import express from 'express'
 import homeRouter from './src/router/home.js'
 import authenticationRouter from './src/router/authentication.js'
-import walletRouter from './src/router/wallet.js'
+import accountRouter from './src/router/account.js'
 import cors from 'cors'
 import db from './src/db.js'
+import SERVER_CONFIG from './src/config.js/server.js'
 const app = express()
-const port = process.env.PORT
 
 try {
   await db.authenticate()
@@ -20,8 +20,11 @@ app.use(cors())
 app.use(express.json())
 app.use('/', homeRouter)
 app.use('/authentication', authenticationRouter)
-app.use('/wallet', walletRouter)
+app.use('/wallet', accountRouter)
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
+SERVER_CONFIG.forEach(server => {
+  const port = server.PORT
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
+  })
 })
